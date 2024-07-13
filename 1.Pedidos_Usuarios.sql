@@ -1,0 +1,170 @@
+create database vendas_sapatos;
+
+use vendas_sapatos;
+CREATE TABLE usuario_tabela (
+    usuario_id INT PRIMARY KEY AUTO_INCREMENT,
+    nome TEXT,
+    sobrenome TEXT,
+    data_nascimento DATE,
+    endereco VARCHAR(50),
+    num_cep VARCHAR(10),
+    nom_uf TEXT,
+    email VARCHAR(50),
+    num_sapato INT,
+    genero VARCHAR(10),
+    data_subscricao DATE,
+    data_at_cad DATE
+);
+
+ALTER TABLE usuario_tabela
+ADD INDEX idx_usuario_id (usuario_id);
+
+ALTER TABLE produtos_tabela
+ADD INDEX idx_SapatosID (SapatosID);
+
+CREATE TABLE pedidos (
+    id_pedido INT PRIMARY KEY AUTO_INCREMENT, 
+    usuario_id INT, 
+    SapatosID INT, 
+    data_pedido DATE, 
+    forma_de_pagamento VARCHAR(255), 
+    preco DECIMAL(10, 2),
+    data_entrega DATE, 
+    estado_entrega VARCHAR(255),
+    FOREIGN KEY (usuario_id) REFERENCES usuario_tabela(usuario_id),
+    FOREIGN KEY (SapatosID) REFERENCES produtos_tabela(SapatosID)
+);
+
+
+INSERT INTO usuario_tabela (nome, sobrenome, data_nascimento, endereco, num_cep, nom_uf, email, num_sapato, genero, data_subscricao, data_at_cad) 
+VALUES 
+('João','Silva','1990-05-15','Rua das Flores, 123','12345-678','SP','joao@email.com',42,'Masculino','2022-03-20', '2023-10-05'),
+('Ana', 'Santos', '1988-08-12', 'Av. Principal, 456', '54321-001', 'RJ', 'ana@email.com', 35, 'Feminino', '2022-01-10', '2023-09-25'),
+('Pedro', 'Oliveira', '1975-03-28', 'Rua dos Passarinhos, 789', '76543-210', 'SP', 'pedro@email.com', 40, 'Masculino', '2021-12-05', '2023-11-15'),
+('Mariana', 'Ferreira', '1999-11-30', 'Rua das Árvores, 987', '09876-543', 'MG', 'mariana@email.com', 37, 'Feminino', '2023-02-28', '2023-12-10'),
+('Lucas', 'Souza', '1982-07-05', 'Av. dos Girassóis, 321', '32198-765', 'PR', 'lucas@email.com', 39, 'Masculino', '2022-04-15', '2023-09-30'),
+('Carla', 'Rodrigues', '1993-09-20', 'Rua das Pedras, 654', '45678-901', 'RS', 'carla@email.com', 36, 'Feminino', '2021-11-20', '2023-11-05'),
+('Gabriel', 'Martins', '1985-01-18', 'Av. Central, 987', '78901-234', 'SC', 'gabriel@email.com', 41, 'Masculino', '2023-01-05', '2023-10-20'),
+('Amanda', 'Almeida', '2000-06-10', 'Rua das Flores, 123', '12345-678', 'SP', 'amanda@email.com', 38, 'Feminino', '2022-03-20', '2023-10-05'),
+('Rafael', 'Costa', '1980-12-03', 'Rua dos Sonhos, 456', '54321-098', 'RJ', 'rafael@email.com', 40, 'Masculino', '2021-10-15', '2023-12-01'),
+('Fernanda', 'Pereira', '1996-04-22', 'Av. das Avenidas, 789', '87654-321', 'MG', 'fernanda@email.com', 35, 'Feminino', '2023-02-10', '2023-11-25'),
+('Marcos', 'Oliveira', '1978-08-07', 'Rua dos Pássaros, 987', '67890-123', 'PR', 'marcos@email.com', 42, 'Masculino', '2022-04-25', '2023-09-10'),
+('Juliana', 'Santos', '1989-11-15', 'Av. das Flores, 321', '43210-987', 'RS', 'juliana@email.com', 37, 'Feminino', '2021-12-20', '2023-11-15'),
+('Diego', 'Ferreira', '1983-02-28', 'Rua das Estrelas, 654', '56789-012', 'SC', 'diego@email.com', 39, 'Masculino', '2023-01-15', '2023-10-30'),
+('Laura', 'Gomes', '2001-07-17', 'Av. dos Sonhos, 123', '32109-876', 'SP', 'laura@email.com', 36, 'Feminino', '2022-02-05', '2023-10-20'),
+('Gustavo', 'Martins', '1977-10-09', 'Rua dos Anjos, 456', '54321-987', 'RJ', 'gustavo@email.com', 41, 'Masculino', '2021-11-10', '2023-12-05'),
+('Camila', 'Oliveira', '1994-03-25', 'Av. das Flores, 789', '67890-234', 'MG', 'camila@email.com', 38, 'Feminino', '2023-03-10', '2023-11-25'),
+('Bruno', 'Santos', '1979-06-11', 'Rua dos Girassóis, 123', '56789-012', 'PR', 'bruno@email.com', 43, 'Masculino', '2022-05-15', '2023-09-30'),
+('Patrícia', 'Silva', '1990-09-28', 'Av. das Estrelas, 456', '45678-901', 'RS', 'patricia@email.com', 39, 'Feminino', '2022-01-20', '2023-11-05'),
+('Luciana', 'Pereira', '1997-12-10', 'Rua dos Sonhos, 789', '54321-098', 'SC', 'luciana@email.com', 37, 'Feminino', '2021-12-15', '2023-10-01')
+
+
+
+INSERT INTO pedidos (usuario_id, SapatosID,data_pedido, forma_de_pagamento, preco, data_entrega,estado_entrega)
+VALUES 
+('1','1783','2022-7-26','Cartão de Crédito','208','2022-8-2','SP'),
+('1','2461','2022-3-20','Cartão de Crédito','120','2022-3-25','SP'),
+('1','2651','2023-10-5','PIX','188','2023-10-10','SP'),
+('2','1705','2022-1-10','Cartão de Débito','208','2022-1-17','RJ'),
+('2','1666','2022-1-10','Cartão de Débito','184','2022-1-17','RJ'),
+('2','1691','2022-4-23','Boleto Bancário','208','2022-4-28','RJ'),
+('2','2185','2022-4-23','Boleto Bancário','96','2022-4-28','RJ'),
+('2','2208','2022-7-24','Cartão de Débito','96','2022-7-29','RJ'),
+('2','737','2022-7-24','Cartão de Débito','173','2022-7-29','RJ'),
+('2','4276','2023-9-25','Cartão de Crédito','196','2023-10-2','RJ'),
+('2','4279','2023-9-25','Cartão de Crédito','196','2023-10-2','RJ'),
+('3','1456','2021-12-5','Cartão de Crédito','198','2021-12-15','SP'),
+('3','3024','2022-12-15','Cartão de Crédito','201','2022-12-20','SP'),
+('3','2712','2023-11-15','Cartão de Crédito','120','2023-11-20','SP'),
+('4','1794','2023-2-28','PIX','208','2023-3-7','MG'),
+('4','4376','2023-9-15','PIX','196','2023-9-20','MG'),
+('4','3019','2023-9-15','PIX','224','2023-9-20','MG'),
+('4','3025','2023-12-10','Cartão de Débito','201','2023-12-20','MG'),
+('4','3129','2023-12-10','Cartão de Débito','196','2023-12-20','MG'),
+('5','1785','2022-12-15','Cartão de Crédito','200','2022-12-23','PR'),
+('5','1459','2023-12-12','Cartão de Crédito','207','2023-12-22','PR'),
+('5','3877','2022-4-15','Cartão de Débito','201','2022-4-20','PR'),
+('5','3889','2023-9-30','PIX','196','2023-10-5','PR'),
+('5','1866','2023-9-30','PIX','120','2023-10-5','PR'),
+('6','3032','2021-11-20','Cartão de Crédito','196','2021-11-25','RS'),
+('6','3657','2021-11-20','Cartão de Crédito','196','2021-11-25','RS'),
+('6','1945','2021-11-20','Cartão de Crédito','96','2021-11-25','RS'),
+('6','1958','2022-1-8','Cartão de Crédito','208','2022-1-13','RS'),
+('6','1960','2023-11-5','Cartão de Crédito','200','2023-11-10','RS'),
+('7','4376','2023-4-17','Cartão de Crédito','196','2023-4-24','SC'),
+('7','4378','2023-8-6','PIX','196','2023-8-11','SC'),
+('7','4042','2023-1-5','Cartão de Crédito','196','2023-1-10','SC'),
+('7','4062','2023-10-20','Cartão de Crédito','196','2023-10-25','SC'),
+('8','1434','2022-3-20','Cartão de Crédito','188','2022-3-25','SP'),
+('8','1444','2021-11-20','Cartão de Crédito','208','2021-11-25','SP'),
+('8','1634','2021-11-20','Cartão de Crédito','184','2021-11-25','SP'),
+('8','1656','2023-10-5','Boleto Bancário','208','2023-10-10','SP'),
+('8','2197','2023-10-5','Boleto Bancário','96','2023-10-10','SP'),
+('9','2448','2022-12-10','Cartão de Crédito','96','2022-12-20','RJ'),
+('9','2872','2022-12-10','Cartão de Crédito','196','2022-12-20','RJ'),
+('9','2713','2021-10-15','Cartão de Crédito','188','2021-10-20','RJ'),
+('9','3396','2023-12-1','Cartão de Crédito','224','2023-12-11','RJ'),
+('10','4283','2023-2-10','Boleto Bancário','224','2023-2-15','MG'),
+('10','3037','2023-5-15','Boleto Bancário','224','2023-5-22','MG'),
+('10','3041','2023-11-25','Boleto Bancário','201','2023-11-30','MG'),
+('11','1787','2022-4-25','Cartão de Débito','184','2022-5-2','PR'),
+('11','2651','2023-2-10','PIX','188','2023-2-15','PR'),
+('11','2641','2023-9-10','Cartão de Débito','120','2023-9-15','PR'),
+('12','2063','2021-12-20','Cartão de Crédito','96','2021-12-30','RS'),
+('12','1459','2021-12-20','Cartão de Crédito','207','2021-12-30','RS'),
+('12','1959','2022-7-17','Cartão de Crédito','96','2022-7-22','RS'),
+('12','1794','2022-11-20','Cartão de Crédito','208','2022-11-25','RS'),
+('12','1639','2023-4-20','Cartão de Crédito','184','2023-4-25','RS'),
+('12','1690','2023-11-15','Cartão de Crédito','184','2022-7-22','RS'),
+('12','1664','2023-11-15','Cartão de Crédito','200','2023-11-20','RS'),
+('13','2719','2023-1-15','Cartão de Crédito','188','2023-1-20','SC'),
+('13','2016','2023-6-5','Cartão de Crédito','96','2023-6-8','SC'),
+('13','2025','2023-6-5','Cartão de Crédito','96','2023-6-8','SC'),
+('13','2042','2023-12-10','Cartão de Crédito','96','2023-12-20','SC'),
+('13','3263','2023-10-30','PIX','188','2023-11-4','SC'),
+('13','2061','2023-12-10','Cartão de Crédito','208','2023-12-20','SC'),
+('14','1961','2022-2-5','Boleto Bancário','96','2022-2-10','SP'),
+('14','1747','2022-2-5','Boleto Bancário','184','2022-2-10','SP'),
+('14','1456','2022-5-16','Cartão de Crédito','198','2022-5-23','SP'),
+('14','1747','2022-8-13','Cartão de Crédito','184','2022-8-18','SP'),
+('14','1747','2023-5-27','Cartão de Crédito','184','2023-6-1','SP'),
+('14','1790','2023-10-20','Cartão de Crédito','208','2023-10-25','SP'),
+('15','3330','2021-11-10','Cartão de Crédito','201','2021-11-15','RJ'),
+('15','3350','2021-11-10','Cartão de Crédito','195','2021-11-15','RJ'),
+('15','1101','2022-10-13','Cartão de Débito','35','2022-10-18','RJ'),
+('15','3350','2022-10-13','Cartão de Débito','195','2022-10-18','RJ'),
+('15','1123','2023-12-5','PIX','234','2023-12-12','RJ'),
+('15','1367','2023-12-5','PIX','35','2023-12-12','RJ'),
+('16','1434','2023-3-10','Cartão de Crédito','188','2023-3-15','MG'),
+('16','2997','2023-3-10','Cartão de Crédito','201','2023-3-15','MG'),
+('16','3047','2023-5-19','Cartão de Crédito','196','2023-5-24','MG'),
+('16','1405','2023-7-8','Cartão de Crédito','198','2023-7-13','MG'),
+('16','1488','2023-8-8','Cartão de Crédito','208','2023-8-15','MG'),
+('16','2040','2023-11-25','Cartão de Crédito','96','2023-11-30','MG'),
+('17','1697','2023-11-21','Cartão de Crédito','184','2023-11-28','PR'),
+('17','3754','2022-5-15','Cartão de Crédito','201','2022-5-20','PR'),
+('17','3755','2022-5-15','Cartão de Crédito','201','2022-5-20','PR'),
+('17','2604','2023-9-30','Cartão de Débito','120','2023-10-5','PR'),
+('17','2605','2023-9-30','Cartão de Débito','173','2023-10-5','PR'),
+('18','3922','2022-1-20','Cartão de Crédito','196','2022-1-25','RS'),
+('18','2193','2022-1-20','Cartão de Crédito','96','2022-1-25','RS'),
+('18','2210','2022-1-20','Cartão de Crédito','96','2022-1-25','RS'),
+('18','1899','2023-2-26','Cartão de Crédito','208','2023-3-3','RS'),
+('18','1913','2023-7-14','Cartão de Crédito','96','2023-7-19','RS'),
+('18','1525','2023-7-14','PIX','188','2023-7-19','RS'),
+('18','1538','2023-11-5','PIX','208','2023-11-10','RS'),
+('19','1951','2021-12-15','Boleto Bancário','184','2021-12-23','SC'),
+('19','1959','2021-12-15','Boleto Bancário','96','2021-12-23','SC'),
+('19','2448','2022-3-18','Cartão de Crédito','96','2022-3-23','SC'),
+('19','2872','2022-7-19','Cartão de Crédito','196','2022-7-26','SC'),
+('19','1794','2022-12-13','Cartão de Crédito','208','2022-12-23','SC'),
+('19','1663','2023-7-14','Cartão de Crédito','208','2023-7-19','SC'),
+('19','2987','2023-10-1','PIX','196','2023-10-6','SC'),
+('19','1459','2023-10-1','PIX','207','2023-10-6','SC'),
+('19','1486','2023-10-1','PIX','35','2023-10-6','SC')
+
+;
+
+select * from usuario_tabela;
+
+select 
