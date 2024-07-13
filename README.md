@@ -11,3 +11,12 @@ Por que o projeto é útil:
 2. Gestão de Usuários: Informações dos clientes, incluindo dados pessoais e preferências.
 
 3. Gestão de Pedidos: Registro de pedidos feitos pelos usuários, incluindo detalhes do pagamento e status de entrega.
+
+
+Importância de Conhecer Seu Consumidor:
+
+1. Fidelização: Entender as necessidades e preferências dos clientes ajuda a criar um relacionamento com a marca, aumentando a lealdade e a repetição de compras.
+
+2. Desenvolvimento de Produtos: Entender o que os consumidores querem, para desenvolver novos produtos e serviços que atendam às suas expectativas.
+
+3. Melhoria do Atendimento ao Cliente: A análise do comportamento do consumidor permite com que as empresas ofereçam um atendimento mais eficaz e personalizado.
